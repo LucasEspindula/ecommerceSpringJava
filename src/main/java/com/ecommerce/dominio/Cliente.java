@@ -13,14 +13,14 @@ public class Cliente extends Pessoa {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String id;
+	private Long id;
 
-	@NotNull(message = "CPF nao pode ser null")
+	@NotNull(message = "CPF nao pode ser vazio")
 	@NotBlank(message = "CPF nao pode ser vazio")
 	@Size(max = 20, message = "CPF pode ter no maximo 20 caracters")
 	private String cpfCliente;
 
-	@NotNull(message = "nome do cliente nao pode ser null")
+	@NotNull(message = "nome do cliente nao pode ser vazio")
 	@NotBlank(message = "nome do cliente nao pode ser vazio")
 	@Size(max = 100, message = "nome do cliente pode ter no maximo 100 caracters")
 	private String nomeCliente;
@@ -30,14 +30,15 @@ public class Cliente extends Pessoa {
 	public Cliente() {
 	}
 	
-	public Cliente(String id, String cpfCliente, String nomeCliente, Contato contato, Endereco endereco) {
+	public Cliente(Long id, String cpfCliente, String nomeCliente, Contato contato, Endereco endereco) {
 		super(contato, endereco);
 		this.id = id;
 		this.cpfCliente = cpfCliente;
 		this.nomeCliente = nomeCliente;
+		isValid();
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
