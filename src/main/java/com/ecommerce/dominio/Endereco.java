@@ -23,8 +23,6 @@ public class Endereco {
 	@Size(max = 50, message = "bairro pode ter no maximo 50 caracters")
 	private String bairro;
 
-	@NotNull(message = "informe um complemento")
-	@NotBlank(message = "informe um complemento")
 	@Size(max = 120, message = "complemento pode ter no maximo 120 caracters")
 	private String complemento;
 
