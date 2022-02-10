@@ -1,5 +1,6 @@
 package com.ecommerce.dominio;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +13,7 @@ import javax.validation.constraints.Size;
 public class Cliente extends Pessoa {
 
 	@Id
+	@Column(name = "idCliente")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 

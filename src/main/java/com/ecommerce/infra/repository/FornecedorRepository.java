@@ -7,11 +7,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.ecommerce.dominio.Cliente;
+import com.ecommerce.dominio.Fornecedor;
 
 @Repository
-public interface ClienteRepository extends JpaRepository<Cliente, Long>{
-
-	@Query("SELECT c FROM Cliente c WHERE c.nomeCliente LIKE %:nomeCliente%")
-	public List<Cliente> buscarCliente(@Param("nomeCliente") String nome);
+public interface FornecedorRepository extends JpaRepository<Fornecedor, Long> {
+	
+	@Query("SELECT c FROM Fornecedor c WHERE c.nomeFantasia LIKE %:nomeFantasia%")
+	public List<Fornecedor> buscarFornecedor(@Param("nomeFantasia") String nome);
 }

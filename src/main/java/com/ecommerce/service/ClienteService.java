@@ -21,6 +21,6 @@ public class ClienteService {
 	}
 	
 	public List<Cliente> buscar(String nome) {
-		return clienteRepository.buscar(nome);
+		return clienteRepository.buscarCliente(nome);
 	}
 }
