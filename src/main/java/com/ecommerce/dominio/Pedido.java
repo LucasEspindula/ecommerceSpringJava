@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,9 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+
 
 @Entity
 public class Pedido {
@@ -39,8 +39,8 @@ public class Pedido {
 	@NotNull(message = "Valor do frete nao pode ser vazio")
 	private Double valorFrete;
 	
-	@OneToMany(mappedBy = "pedido")
-	private List<Item> itens = new ArrayList<>();
+	@OneToMany(cascade = {CascadeType.ALL},  mappedBy = "pedido")
+	private List<Item> itens;
 
 	// este construtor eh para uso de sping / jackson
 	@Deprecated
@@ -48,6 +48,7 @@ public class Pedido {
 	}
 	
 	public Pedido(Long id, Fornecedor fornecedor, Cliente cliente, Double valorFrete,Item itens) {
+		this.itens = new ArrayList<>();
 		this.dataCompra = LocalDateTime.now();
 		this.fornecedor = fornecedor;
 		this.cliente = cliente;
@@ -61,6 +62,7 @@ public class Pedido {
 		if (item == null) {
 			return;
 		}
+		item.setPedido(this);
 		this.itens.add(item);
 	}
 	

@@ -18,7 +18,6 @@ public class Item extends Entidade{
 	private Long id;
 	
 	@ManyToOne
-	
 	@JoinColumn(name = "idProduto")
 	@NotNull(message = "Produto nao pode ser vazio")
 	private Produto produto;
@@ -52,5 +51,9 @@ public class Item extends Entidade{
 
 	public int getQuantidade() {
 		return quantidade;
+	}
+	
+	void setPedido(Pedido pedido) {
+		this.pedido = pedido;
 	}
 }
